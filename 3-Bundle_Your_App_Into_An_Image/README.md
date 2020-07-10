@@ -19,28 +19,17 @@ cd 3-Bundle_Your_App_Into_An_Image
 ---
 >If you haven't already guessed - this repo comes with a little app that we're going to containerize with Docker. The app uses node.js and express to create a server that assigns itself a random number and then serves that random number to whoever asks for it.
 >
->*You don't have to,* but if you want to see this app in action before you containerize it, you will have to have node and npm installed on your machine. From inside the '/3-Bundle_Your_App_Into_An_Image' directory, run `npm install` and then `npm start`.
->
->Visiting `localhost:3000` in your browser will serve the message:
-```sh
-Hello! This server's random number is: <randomNumber>
-```
+
 >
 >Notice that even if you keep refreshing the page, it will continue to serve the same random number. The number is assigned when the server is started up and it persists as long as it is running. Restarting the app, however, will cause it to reassign and serve a different random number. This feature of our app will be important for demonstration purposes.
 
 ---
 
-The concept of building an image with your app bundled into it is similar to the process of making a sandwich (yes, I'm using this analogy again - I warned you). 
-
-If you want to build a sandwich you would use a recipe, right? Because a sandwich is built in several layers, a recipe might instruct you to lay the base layer of bread down, then a layer of mayonnaise, then a layer of pickles, then a layer lettuce, and so on and so forth. This is equivalent to how a Docker image is built - only the recipe Docker uses is called a 'Dockerfile' and the layers are changes to the filesystem rather than condiments and toppings.
+If you want to build a cake you would use a recipe, right? The recipe Docker uses is called a 'Dockerfile' and the layers are changes to the filesystem rather than condiments and toppings.
 
 "A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using `docker build`, users can create an automated build that executes several command-line instructions in succession." -- Docker Docs
 
 So, if you were to build a bare bones image, your recipe (Dockerfile) would tell you to lay down the necessary ingredients (system layers) so the sandwich would have the functionality that you need. For example, to build an image from scratch that could be spun into a container that runs node.js;  instead of building layers of Bread -> Mayo -> Pickles -> Onions -> Bananas to create an image, the recipe would instruct you to build layers like:  Build from Ubuntu image -> Update Ubuntu -> Install Node -> Add Working Directory -> Copy app into Working Directory -> Install Dependencies
-
----
-
-Let's get a little more familiar with layers. The images that we have used thus far were built from layers, but you didn't write the recipe (Dockerfile) for the sandwich (image), so you don't really know what the image is made of. But that's okay - this process abstracts away a lot of the complexity needed to build useful containers. You can, however get a feel for how many layers were abstracted away from you in a particular image when downloading one.
 
 - [ ] Try this exercise: run the command `docker pull node:latest`
 
@@ -52,15 +41,7 @@ You will see that, in the process of pulling the node image down from Dockerhub,
 
 ![dockerhist](https://github.com/dylanlrrb/P-C-Y-Assets/blob/master/3/dockerhist.png?raw=true)
 
-I promise I'm almost done with the sandwich metaphors.
-
 **Images built from images build from images...**
-
-Sounds like a pattern we can use to our advantage. Say there is a really tasty VEGAN sandwich that you can pick up from the store. It has all these exotic ingredients that you don't know how to pronounce, but one thing you know for sure is that it would taste even better with a hearty layer of sliced turkey. Yum.
-
-You COULD scour your local health food stores to find all those exotic ingredients so you can build this sandwich from scratch. But why would you want to do that when you can just pick up that already assembled sandwich from the store and slap some turkey on it?
-
-That is how we're going to approach bundling our app into an image. We're going to create a Dockerfile 'recipe' that uses a 'premade sandwich' image as the base ingredient and slap on our own custom ingredient (our app). Then we build from that Dockerfile and our containerized app image is ready to go! This is much easier than building that fancy sandwich from scratch! **(Then from here, that image with our app inside can then be spun into a container to be actually used)**
 
 The base image our Dockerfile recipe will use to build our custom image is going to be the 'node:latest' image that we just pulled down from Dockerhub. Built into this image is everything we need to run a node app. Sounds tasty, so let's add it to our Dockerfile. 
 
