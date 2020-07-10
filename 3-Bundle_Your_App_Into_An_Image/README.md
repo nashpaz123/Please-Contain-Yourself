@@ -4,14 +4,17 @@
 
 - [ ] If you have not already cloned this repo onto your computer, do so now. Make sure you have git, and run:
 
-`git clone https://github.com/nashpaz123/Please-Contain-Yourself ` You will be making use of files in this repo during this module.
+`git clone https://github.com/nashpaz123/Please-Contain-Yourself ` 
+
+You will be making use of files in this repo during this module.
 
 - [ ] `cd` into the repo and then `cd` into the directory '/3-Bundle_Your_App_Into_An_Image'. Run: 
 
-`cd Please-Contain-Yourself
+```
+cd Please-Contain-Yourself
 
 cd 3-Bundle_Your_App_Into_An_Image
-`
+```
 
 ---
 >If you haven't already guessed - this repo comes with a little app that we're going to containerize with Docker. The app uses node.js and express to create a server that assigns itself a random number and then serves that random number to whoever asks for it.
