@@ -229,7 +229,9 @@ The `--rmi all` option removes not only the containers and network that it creat
 
 - [ ] Revel in all the disk space you reclaimed.
 
-That's it! I hope you enjoyed learning about Docker Compose! After typing out every command to get your apps running in the previous Modules, it's easy to appreciate all that Compose does for you. It saves a ton of time and brainpower that you could otherwise be using so solve bigger challenges... like how to scale your app! Luckily for you, that's the topic of our next Module -> [Module 7 - Docker Swarm for Scaling](https://github.com/nashpaz123/Please-Contain-Yourself/tree/master/7-Docker_Swarm_For_Scaling)
+That's it! I hope you enjoyed learning about Docker Compose! After typing out every command to get your apps running in the previous Modules, it's easy to appreciate all that Compose does for you. It saves a ton of time and brainpower that you could otherwise be using so solve bigger challenges... like how to scale your app! For that, you'll want to continue on to learning Kubernetes :-) Start with:
+
+[The Illustrated Childrens Guide to Kubernetes](https://www.youtube.com/watch?v=lcygvgW6sFM)
 
 
 ---
