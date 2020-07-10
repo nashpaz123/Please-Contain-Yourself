@@ -4,22 +4,7 @@
 
 - [ ] Check boxes are steps that need to be completed.
 
-Text that looks `like this --for --example` are commands that you should type into your terminal. Or else.
-
----
->Asides: Side notes to ponder while staring off into the distance.
-
----
-
-**Bold text: Gotchas that are gonna getcha if you don't heed this advice**
-
-## With that out of the way, let's get started!
-
 ![compose](https://github.com/dylanlrrb/P-C-Y-Assets/blob/master/6/compose.png?raw=true)
-
-I love every logo for all the Docker services, they're all just so charmingly nautical themed. I mean look at this octopus. I can't take it.
-
-The octopus is the logo for Docker Compose - a tool that works with Docker that makes makes your life a whole lot easier.
 
 In the previous Module we containerized an app that was split into several microservices, each requiring its own container. But before we could get each container up and running we had to create an image for each service as well that contained each chunk of source code. 
 
@@ -244,7 +229,7 @@ The `--rmi all` option removes not only the containers and network that it creat
 
 - [ ] Revel in all the disk space you reclaimed.
 
-That's it! I hope you enjoyed learning about Docker Compose! After typing out every command to get your apps running in the previous Modules, it's easy to appreciate all that Compose does for you. It saves a ton of time and brainpower that you could otherwise be using so solve bigger challenges... like how to scale your app! Luckily for you, that's the topic of our next Module -> [Module 7 - Docker Swarm for Scaling](https://github.com/dylanlrrb/Please-Contain-Yourself/tree/master/7-Docker_Swarm_For_Scaling)
+That's it! I hope you enjoyed learning about Docker Compose! After typing out every command to get your apps running in the previous Modules, it's easy to appreciate all that Compose does for you. It saves a ton of time and brainpower that you could otherwise be using so solve bigger challenges... like how to scale your app! Luckily for you, that's the topic of our next Module -> [Module 7 - Docker Swarm for Scaling](https://github.com/nashpaz123/Please-Contain-Yourself/tree/master/7-Docker_Swarm_For_Scaling)
 
 
 ---
