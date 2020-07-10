@@ -1,63 +1,21 @@
 # Module 5 - Make Multiple Containers Work Together
 
-#### A note about the semantic formatting in this tutorial:
 
 - [ ] Check boxes are steps that need to be completed.
-
-Text that looks `like this --for --example` are commands that you should type into your terminal. Or else.
-
----
->Asides: Side notes to ponder while staring off into the distance.
-
----
-
-**Bold text: Gotchas that are gonna getcha if you don't heed this advice**
-
-**Click on an image if you need a larger view**
 
 ![dokernetwork](https://github.com/dylanlrrb/P-C-Y-Assets/blob/master/5/dockernetwork.png?raw=true)
 
 ## Preface: Intro to Microservices
 
-As you can see from the the previous modules, Docker makes it really easy to isolate different parts of your app into discrete units.
-
-Not only is it really easy, but because the official Dockerhub images you layer your app on top of have singular purposes (e.g. postgreSQL database image, nginx server image, etc.), it sort of forces us to think about building software in discrete 'chunks' of functionality.
-
-These discrete chunks of functionality are called 'microservices' and are the fundamental idea behind a type of software design pattern called 'microservices architecture'
-
-Now, you might be wondering: **"Why not just layer everything I need into one container? I could just create one massive container with everything I need and, BAM, I got an app"**
-
-**Slow down there. That's a bad idea for a couple reasons.**
-
-- First off, layering a ton of images into one massive image that spins up into a multi-functional container is not efficient. The great thing about containers is that it tricks the computer into using it's un-utilized processing power to run many more containers at the same time than it would if they were regular pieces of software, thus getting more 'bang for your buck' out of the host machine (so-to-speak). Having your entire app's functionality in one container wastes all that precious processing power Docker could have been squeezing out of the host if you otherwise separated your app into discrete, containerized microservices.
-
-- Secondly, the idea behind containers is that they are the smallest unit of real composition. That is, a container is the smallest thing you can produce in advance, not knowing what else it will be combined with, and have strong guarantees of how it will behave and interact with other components.
-
-This type of software design yields a 'monolithic' application. Think of the 'monolithic' pattern of architecture as the [monolith from that movie '2001: A Space Odyssey'](https://github.com/dylanlrrb/P-C-Y-Assets/blob/master/5/mono.jpg?raw=true). It's big, it's imposing, no one quite knows how it works, and the closest any developer can come to unlocking its mysteries is throwing rocks at it like a caveman. Not a great strategy for building software that needs to be quickly iterated. Monolithic applications can evolve into a [“big ball of mud”](https://en.wikipedia.org/wiki/Big_ball_of_mud); a situation where no single developer (or group of developers) understands the entirety of the application. Scaling monolithic applications can also be challenging. And perhaps the greatest sin - the ability to reuse components is very limited in a monolith.
-
-**Adopting a microservices architecture rather than a monolithic one offers several advantages:**
-
-- First, it's more robust - in a microservices architecture, the monolith is “broken up” into a set of independent services that are
-developed, deployed and maintained separately. If there is one part that needs to be changed or tweaked for whatever reason, you don't have to take down your entire app to change it and relaunch the entire monolithic application.
-
-- Second, different services can be scaled differently. Say you need more servers or maybe more databases to handle a large influx of users, using the concept of ['horizontal scaling'](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling) you can just spin up more containers responsible for that function rather than duplicating or taking down the entire monolith of an application.
-
-- Third, because each container is isolated, teams can work separately on discrete parts of an app without meddling in every other team's code. This makes the entire software building process more efficient and robust. A team can just declare, "Hey, this is what information our microservice is expecting and this is what it will send out, don't worry about how - that's our job. You just worry about your microservice"
+Now, you might be wondering: **"Why not just layer everything I need into one MONOLITHIC container? I could just create one massive container with everything I need and, BAM, I got an app"**
 
 **Overall, using microservice architecture allows you to build software that is adaptable, composable, autonomous, and fault tolerant.**
-
-Okay, so I've sold you on the fact that you should be using containers to organize your app into microservices. If you're the inquisitive type, you might be wondering, **"How on earth do I get my containers to communicate with each other, huh?"**
-
-Well let me lay some knowledge on your brain. As the frickin' adorable image at the top of this README implies, Docker has a built in way for your containers to talk to each other.
-
-**They're called Docker Networks - let's learn about em'!**
+So, **"How on earth do I get my containers to communicate with each other?"**
 
 ---
->Side note: If you were previously familiar with Docker before reading this guide, you may have been under the impression that containers were connected via the ` --link` option used during `docker run`. And you WOULD have been right, however, ` --link` has been depreciated since version 1.12 and may completely disappear at any moment... now it's hip to use Networks. Get with the times, gramps.
+## Docker Networks - let's learn about em'!
 
 ---
-
-## With that out of the way, let's get started!
 
 
 Module 5 comes with yet another app, and in the spirit of using microservice architecture, it is split into 3 services: a 'survey server', a 'results server', and a MongoDB database.
@@ -281,7 +239,7 @@ Also, there would be no need to watch for file changes in the final container, s
 
 Wouldn't it be amazing if there were some way to automatically coordinate all these containers so you didn't have to build all the images and run all the containers separately? What if I told you there's a way to start up a multi-container app with one command??
 
-If you would like to be enlightened by these ancient and powerful secrets, continue to [Module 6 - Docker Compose for Multi-Container Apps](https://github.com/dylanlrrb/Please-Contain-Yourself/tree/master/6-Docker_Compose_For_Multi-Container_Apps)
+If you would like to be enlightened by these ancient and powerful secrets, continue to [Module 6 - Docker Compose for Multi-Container Apps](https://github.com/nashpaz123/Please-Contain-Yourself/tree/master/6-Docker_Compose_For_Multi-Container_Apps)
 
 ---
 
