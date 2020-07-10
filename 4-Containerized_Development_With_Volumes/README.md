@@ -1,22 +1,7 @@
 # Module 4 - Containerized Development With Volumes
 
-#### A note about the semantic formatting in this tutorial:
 
 - [ ] Check boxes are steps that need to be completed.
-
-Text that looks `like this --for --example` are commands that you should type into your terminal. Or else.
-
----
->Asides: Side notes to ponder while staring off into the distance.
-
----
-
-**Bold text: Gotchas that are gonna getcha if you don't heed this advice**
-
-**Click on an image if you need a larger view**
-
-## With that out of the way, let's get started!
-
 
 - [ ] Using the `cd` command in your terminal - navigate to the '/4-Containerized_Development_With_Containers' directory
 
@@ -78,7 +63,7 @@ See 'docker run --help'.
 `pwd` stands for 'print working directory' and it does just that. Mine looks like:
 
 ```sh
-/Users/Dylan/Desktop/Please-Contain-Yourself/4-Containerized_Development_With_Volumes/
+/Users/Nash/Desktop/Please-Contain-Yourself/4-Containerized_Development_With_Volumes/
 ```
 
 How about yours??
@@ -88,7 +73,7 @@ How about yours??
 That's a monster of a command. Mine will look like this:
 
 ```sh
-docker run -d -p 1000:8080 -v /Users/Dylan/Desktop/Please-Contain-Yourself/4-Containerized_Development_With_Volumes/:/src/app --name psychic_container colorserver
+docker run -d -p 1000:8080 -v /Users/Nash/Desktop/Please-Contain-Yourself/4-Containerized_Development_With_Volumes/:/src/app --name psychic_container colorserver
 ```
 
 **Again, yours will look different depending on the path you got from `pwd`**
