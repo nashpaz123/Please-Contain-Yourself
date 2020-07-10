@@ -1,22 +1,6 @@
 # Module 3 - Bundle Your App into an Image
 
-#### A note about the semantic formatting in this tutorial:
-
 - [ ] Check boxes are steps that need to be completed.
-
-Text that looks `like this --for --example` are commands that you should type into your terminal. Or else.
-
----
->Asides: Side notes to ponder while staring off into the distance.
-
----
-
-**Bold text: Gotchas that are gonna getcha if you don't heed this advice**
-
-**Click on an image if you need a larger view**
-
-## With that out of the way, let's get started!
-
 
 - [ ] If you have not already cloned this repo onto your computer, do so now. You will be making use of files in this repo during this module
 
@@ -205,7 +189,7 @@ docker run -d -p 4000:3000 --rm nodeserver
 
 ---
 
-- [ ] That's it! Great job powering through this module! To dive in even deeper, head on over to [Module 4](https://github.com/dylanlrrb/Please-Contain-Yourself/tree/master/4-Containerized_Development_With_Volumes) - Containerized Development with Volumes
+- [ ] That's it! Great job powering through this module! To dive in even deeper, head on over to [Module 4](https://github.com/nashpaz123/Please-Contain-Yourself/tree/master/4-Containerized_Development_With_Volumes) - Containerized Development with Volumes
 
 ---
 #### Things we've learned:
