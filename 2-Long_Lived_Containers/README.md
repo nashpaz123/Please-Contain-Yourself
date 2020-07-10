@@ -1,36 +1,21 @@
 # Module 2 - Long Lived Containers
 
-#### A note about the semantic formatting in this tutorial:
-
 - [ ] Check boxes are steps that need to be completed.
-
-Text that looks `like this --for --example` are commands that you should type into your terminal. Or else.
-
----
->Asides: Side notes to ponder while staring off into the distance.
-
----
-
-**Bold text: Gotchas that are gonna getcha if you don't heed this advice**
-
-**Click on an image if you need a larger view**
-
-## With that out of the way, let's get started!
-
-
-**Beware: this module picks up where Module 1 left off**
 
 - [ ] Let's jump right in by spinning up a brand new container from a brand new image! Run:
 ```sh
 docker run -d -p 80:80 --name webserver nginx
 ```
-**As was the case the first time you ran the hello-world image; it looks for the 'nginx' image cached locally and when it cannot find it, Docker downloads it from Dockerhub... which will take just a bit of time**
+**On a first time run, the 'nginx' image isn't  cached locally and when it cannot find it, Docker downloads it from Dockerhub... which will take just a bit of time**
 
 - [ ] We'll break down that command we just used piece by piece in a bit, but for now run `docker ps` and note that this container shows up in the report despite the fact that we did not add the ` -a` flag.
 
 - [ ] This is because 'docker ps' displays only the containers currently running on your machine and the nginx container we just spun up is still running! Go ahead and check this out by opening up a web browser and navigating to `localhost:80`
 
-![dockernginx](https://github.com/dylanlrrb/P-C-Y-Assets/blob/master/2/dockernginx.png?raw=true)
+![dockernginx](https://github.com/
+
+
+anlrrb/P-C-Y-Assets/blob/master/2/dockernginx.png?raw=true)
 
 That message displayed in your browser is being served from the container you just spun up, and will continue to do so as long as it's running! Cool!
 
@@ -164,7 +149,7 @@ Looks like you're going to have to get rid of your 'hello-world' containers! The
 
 ![dockerclear](https://github.com/dylanlrrb/P-C-Y-Assets/blob/master/2/dockerclear.png?raw=true)
 
-That's it! Great job getting through this module! Now that you've got a solid understanding of the basics, we can move on to the more interesting and useful features that Docker has to offer! When you're ready - [Module 3](https://github.com/dylanlrrb/Please-Contain-Yourself/tree/master/3-Bundle_Your_App_Into_An_Image) Bundle Your App Into An Image
+That's it! Great job getting through this module! Now that you've got a solid understanding of the basics, we can move on to the more interesting and useful features that Docker has to offer! When you're ready - [Module 3](https://github.com/nashpaz123/Please-Contain-Yourself/tree/master/3-Bundle_Your_App_Into_An_Image) Bundle Your App Into An Image
 
 ---
 ####Things we've learned:
