@@ -29,8 +29,6 @@ If you want to build a cake you would use a recipe, right? The recipe Docker use
 
 "A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using `docker build`, users can create an automated build that executes several command-line instructions in succession." -- Docker Docs
 
-So, if you were to build a bare bones image, your recipe (Dockerfile) would tell you to lay down the necessary ingredients (system layers) so the sandwich would have the functionality that you need. For example, to build an image from scratch that could be spun into a container that runs node.js;  instead of building layers of Bread -> Mayo -> Pickles -> Onions -> Bananas to create an image, the recipe would instruct you to build layers like:  Build from Ubuntu image -> Update Ubuntu -> Install Node -> Add Working Directory -> Copy app into Working Directory -> Install Dependencies
-
 - [ ] Try this exercise: run the command `docker pull node:latest`
 
 You will see that, in the process of pulling the node image down from Dockerhub, it lists out all the images that image is built from as it downloads
