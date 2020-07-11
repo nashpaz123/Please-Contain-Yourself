@@ -76,6 +76,12 @@ That's a monster of a command. Mine will look like this:
 docker run -d -p 1000:8080 -v /Users/Nash/Desktop/Please-Contain-Yourself/4-Containerized_Development_With_Volumes/:/src/app --name psychic_container colorserver
 ```
 
+But most Linux machines will support the following command as well:
+
+```sh
+docker run -d -p 1000:8080 -v $(pwd)/:/src/app --name psychic_container colorserver
+```
+
 **Again, yours will look different depending on the path you got from `pwd`**
 
 - [ ] In your browser, go to `localhost:1000` in a new tab. You should notice something amazing... the page is the color 'SpringGreen'! **The container you just spun up reflects a change made in the app's source code that was not present when the image was built!**
