@@ -39,9 +39,9 @@ Now, assuming that you've got MongoDB, node.js, and npm installed on your comput
 Docker is the only thing you need from now on! So let's get started spinning the different parts of our app into containerized microservices!
 
 
-**First:** Let's build those images:
+**First:** Let's build those images (you'll see some "warning mongoose" warnings, don't worry about them):
 
-- [ ] Build your survey server image and tag it with the name 'survey' by running `docker build -t survey .`
+- [ ] Build your survey server image and tag it with the name 'survey' by running `docker build -t survey .` 
 
 **REMEMBER the dot is a relative file path to where your Dockerfile lives (one is included for each server), so MAKE SURE you are cd'd into the correct directory before running this command**
 
