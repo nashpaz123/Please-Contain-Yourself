@@ -12,10 +12,7 @@ docker run -d -p 80:80 --name webserver nginx
 
 - [ ] This is because 'docker ps' displays only the containers currently running on your machine and the nginx container we just spun up is still running! Go ahead and check this out by opening up a web browser and navigating to `localhost:80`
 
-![dockernginx](https://github.com/
-
-
-anlrrb/P-C-Y-Assets/blob/master/2/dockernginx.png?raw=true)
+![dockernginx](https://github.com/dylanlrrb/P-C-Y-Assets/blob/master/2/dockernginx.png?raw=true)
 
 That message displayed in your browser is being served from the container you just spun up, and will continue to do so as long as it's running! Cool!
 
