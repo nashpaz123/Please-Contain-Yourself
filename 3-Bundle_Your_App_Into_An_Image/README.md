@@ -2,7 +2,7 @@
 
 - [ ] Check boxes are steps that need to be completed.
 
-- [ ] If you have not already cloned this repo onto your computer, do so now. Make sure you have git, and run:
+- [ ] If you have not already cloned this repo onto your computer, do so now. Make sure you have git ( run `yum install git -y ` ), and run:
 
 `git clone https://github.com/nashpaz123/Please-Contain-Yourself ` 
 
