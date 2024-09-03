@@ -4,8 +4,8 @@ on:
   push:
   workflow_dispatch:
 jobs:
-  create-toml:
-    name: Create Gitleaks Config
+  scan:
+    name: Run Gitleaks Scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -44,14 +44,6 @@ jobs:
           ]
           EOF
 
-      - name: Verify gitleaks.toml file
-        run: cat $GITHUB_WORKSPACE/gitleaks.toml
-
-  scan:
-    name: Run Gitleaks Scan
-    runs-on: ubuntu-latest
-    needs: create-toml
-    steps:
       - name: Run Gitleaks with generated config
         uses: gitleaks/gitleaks-action@v2
         env:
