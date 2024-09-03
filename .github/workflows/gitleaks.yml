@@ -27,7 +27,7 @@ jobs:
 
           [allowlist]
           paths = [
-            "ignore_this_path/*",
+            ".github/workflows/gitleaks.yml",
             "another_ignored_path/*",
             "config/whitelisted_file.yaml"
           ]
