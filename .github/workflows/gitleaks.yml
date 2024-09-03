@@ -23,7 +23,8 @@ jobs:
           [allowlist]
           description = "Global allowlist"
           paths = [
-            '''(^|/)\.github/workflows/gitleaks\.yml$'''
+            '''(^|/)\.github/workflows/gitleaks\.yml$''',
+            '''DevGeekWeek_Keys/dgweek2021-docker.pem'''
           ]
 
           regexes = [
