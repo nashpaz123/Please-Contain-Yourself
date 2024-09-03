@@ -36,7 +36,7 @@ jobs:
             "1234abcd5678efgh9012ijklmnopqrstuvwx"
           ]
           rule_ids = [
-            "generic-api-key",
+            "some-rule-id",
             "some-other-rule-id"
           ]
           secret = [
@@ -65,6 +65,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
-        with:
-          args: --config-path=${{ needs.create-toml.outputs.config-path }} --exit-code 1 --verbose
+          CONFIG_PATH: ${{ needs.create-toml.outputs.config-path }}
+
   
