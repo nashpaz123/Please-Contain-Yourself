@@ -40,8 +40,8 @@ jobs:
             "some-other-rule-id"
           ]
           secret = [
-            "allowed_secret_1",
-            "allowed_secret_2",
+            "AKIAIOSDNKOW7EXAMPLE",
+            "AKIAIOSDNKOW73XXMPL3",
             "another_allowed_secret"
           ]
           EOF
