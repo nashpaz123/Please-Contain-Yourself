@@ -39,7 +39,6 @@ jobs:
           ]
           secret = [
             "AKIAIOSDNKOW7EXAMPLE",
-            "AKIAIOSDNKOW73XXMPL3",
             "another_allowed_secret"
           ]
           EOF
