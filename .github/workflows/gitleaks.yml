@@ -16,48 +16,93 @@ jobs:
       - name: Create gitleaks.toml file
         run: |
           cat <<EOF > /tmp/gitleaks.toml
-          title = "Gitleaks Configuration"
+          # Gitleaks configuration
 
-          # Custom rule to catch specific AWS secrets
-          [[rules]]
-          description = "Custom rule to catch AWS secrets"
-          regex = '''AKIA[0-9A-Z]{16}'''
-          tags = ["aws", "key"]
-
-          # Use the built-in rules as well
-          # No need to redefine these; they will be used automatically unless explicitly disabled
+          title = "gitleaks config"
 
           [allowlist]
+          description = "Global allowlist"
           paths = [
-            ".github/workflows/gitleaks.yml",
-            "another_ignored_path/*",
-            "config/whitelisted_file.yaml"
+            '''(^|/)\.github/workflows/gitleaks\.yml$'''
           ]
 
-          commits = [
-            "abcd1234efgh5678ijkl9012mnopqrstuvwx"
+          regexes = [
+            '''AKIAIOSDNKOW7EXAMPLE''',
+            '''another_allowed_secret'''
           ]
 
-          rule_ids = [
-            "some-rule-id",
-            "some-other-rule-id"
-          ]
-
-          secret = [
-            "AKIAIOSDNKOW7EXAMPLE",
-            "another_allowed_secret"
-          ]
-
-          # Example rules for others to add more custom configurations
+          # AWS
           [[rules]]
-          description = "Example rule to ignore specific secrets"
-          regex = '''dummy_secret=\w{32}'''
-          tags = ["example"]
+          id = "aws-access-token"
+          description = "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms."
+          regex = '''(?:A3T[A-Z0-9]|AKIA|ASIA|ABIA|ACCA)[A-Z0-9]{16}'''
+          keywords = [
+              "akia","asia","abia","acca",
+          ]
 
           [[rules]]
-          description = "Another example rule"
-          regex = '''some_other_secret=\w{16}'''
-          tags = ["example", "other"]
+          id = "aws-secret-key"
+          description = "AWS Secret Key"
+          regex = '''(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z\/+]{40}['\"]'''
+
+          [[rules]]
+          id = "aws-mws-token"
+          description = "AWS MWS Token"
+          regex = '''amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'''
+
+          # GitHub
+          [[rules]]
+          id = "github-pat"
+          description = "GitHub Personal Access Token"
+          regex = '''ghp_[0-9a-zA-Z]{36}'''
+
+          [[rules]]
+          id = "github-oauth"
+          description = "GitHub OAuth Access Token"
+          regex = '''gho_[0-9a-zA-Z]{36}'''
+
+          [[rules]]
+          id = "github-app-token"
+          description = "GitHub App Token"
+          regex = '''(ghu|ghs)_[0-9a-zA-Z]{36}'''
+
+          [[rules]]
+          id = "github-refresh-token"
+          description = "GitHub Refresh Token"
+          regex = '''ghr_[0-9a-zA-Z]{76}'''
+
+          # GitLab
+          [[rules]]
+          id = "gitlab-pat"
+          description = "GitLab Personal Access Token"
+          regex = '''glpat-[0-9a-zA-Z\-]{20}'''
+
+          # Slack
+          [[rules]]
+          id = "slack-access-token"
+          description = "Slack Access Token"
+          regex = '''xox[baprs]-([0-9a-zA-Z]{10,48})?'''
+
+          [[rules]]
+          id = "slack-webhook"
+          description = "Slack Webhook"
+          regex = '''https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8,12}/[a-zA-Z0-9_]{24}'''
+
+          # Generic
+          [[rules]]
+          id = "generic-api-key"
+          description = "Generic API Key"
+          regex = '''(?i)(api[_-]?key|apikey)(.{0,20})?['"][0-9a-zA-Z]{16,45}['"]'''
+
+          [[rules]]
+          id = "generic-secret"
+          description = "Generic Secret"
+          regex = '''(?i)secret(.{0,20})?['"][0-9a-zA-Z]{16,45}['"]'''
+
+          [[rules]]
+          id = "private-key"
+          description = "Private Key"
+          regex = '''-----BEGIN (?:RSA|DSA|EC|PGP|OPENSSH) PRIVATE KEY'''
 
           EOF
 
