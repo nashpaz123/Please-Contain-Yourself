@@ -15,7 +15,7 @@ jobs:
 
       - name: Create gitleaks.toml file
         run: |
-          cat <<EOF > $GITHUB_WORKSPACE/gitleaks.toml
+          cat <<EOF > /tmp/gitleaks.toml
           title = "Gitleaks Configuration"
 
           [[rules]]
@@ -45,9 +45,9 @@ jobs:
           EOF
 
       - name: verify gitleaks.toml 
-        run: cat $GITHUB_WORKSPACE/gitleaks.toml
+        run: cat /tmp/gitleaks.toml
 
       - name: Run Gitleaks with generated config
         uses: gitleaks/gitleaks-action@v2
         env:
-          CONFIG_PATH: $GITHUB_WORKSPACE/gitleaks.toml
+          CONFIG_PATH: /tmp/gitleaks.toml
