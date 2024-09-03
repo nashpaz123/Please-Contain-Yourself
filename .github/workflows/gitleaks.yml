@@ -16,48 +16,48 @@ jobs:
       - name: Create gitleaks.toml file
         run: |
           cat <<EOF > /tmp/gitleaks.toml
-title = "Gitleaks Configuration"
+          title = "Gitleaks Configuration"
 
-# Custom rule to catch specific AWS secrets
-[[rules]]
-description = "Custom rule to catch AWS secrets"
-regex = '''AKIA[0-9A-Z]{16}'''
-tags = ["aws", "key"]
+          # Custom rule to catch specific AWS secrets
+          [[rules]]
+          description = "Custom rule to catch AWS secrets"
+          regex = '''AKIA[0-9A-Z]{16}'''
+          tags = ["aws", "key"]
 
-# Use the built-in rules as well
-# No need to redefine these; they will be used automatically unless explicitly disabled
+          # Use the built-in rules as well
+          # No need to redefine these; they will be used automatically unless explicitly disabled
 
-[allowlist]
-paths = [
-  ".github/workflows/gitleaks.yml",
-  "another_ignored_path/*",
-  "config/whitelisted_file.yaml"
-]
+          [allowlist]
+          paths = [
+            ".github/workflows/gitleaks.yml",
+            "another_ignored_path/*",
+            "config/whitelisted_file.yaml"
+          ]
 
-commits = [
-  "abcd1234efgh5678ijkl9012mnopqrstuvwx"
-]
+          commits = [
+            "abcd1234efgh5678ijkl9012mnopqrstuvwx"
+          ]
 
-rule_ids = [
-  "some-rule-id",
-  "some-other-rule-id"
-]
+          rule_ids = [
+            "some-rule-id",
+            "some-other-rule-id"
+          ]
 
-secret = [
-  "AKIAIOSDNKOW7EXAMPLE",
-  "another_allowed_secret"
-]
+          secret = [
+            "AKIAIOSDNKOW7EXAMPLE",
+            "another_allowed_secret"
+          ]
 
-# Example rules for others to add more custom configurations
-[[rules]]
-description = "Example rule to ignore specific secrets"
-regex = '''dummy_secret=\w{32}'''
-tags = ["example"]
+          # Example rules for others to add more custom configurations
+          [[rules]]
+          description = "Example rule to ignore specific secrets"
+          regex = '''dummy_secret=\w{32}'''
+          tags = ["example"]
 
-[[rules]]
-description = "Another example rule"
-regex = '''some_other_secret=\w{16}'''
-tags = ["example", "other"]
+          [[rules]]
+          description = "Another example rule"
+          regex = '''some_other_secret=\w{16}'''
+          tags = ["example", "other"]
 
           EOF
 
