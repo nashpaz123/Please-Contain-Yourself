@@ -1,0 +1,70 @@
+name: gitleaks
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+jobs:
+  create-toml:
+    name: Create Gitleaks Config
+    runs-on: ubuntu-latest
+    outputs:
+      config-path: ${{ steps.set-path.outputs.path }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Create gitleaks.toml file
+        run: |
+          cat <<EOF > gitleaks.toml
+          title = "Gitleaks Configuration"
+
+          [[rules]]
+          description = "Rule to ignore specific secrets"
+          regex = '''dummy_secret=\w{32}'''
+          tags = ["example"]
+
+          [allowlist]
+          paths = [
+            "ignore_this_path/*",
+            "another_ignored_path/*",
+            "config/whitelisted_file.yaml"
+          ]
+          commits = [
+            "abcd1234efgh5678ijkl9012mnopqrstuvwx",
+            "1234abcd5678efgh9012ijklmnopqrstuvwx"
+          ]
+          rule_ids = [
+            "generic-api-key",
+            "some-other-rule-id"
+          ]
+          secret = [
+            "allowed_secret_1",
+            "allowed_secret_2",
+            "another_allowed_secret"
+          ]
+          EOF
+
+      - name: Set config path output
+        id: set-path
+        run: echo "::set-output name=path::$(pwd)/gitleaks.toml"
+        
+  scan:
+    name: Run Gitleaks Scan
+    runs-on: ubuntu-latest
+    needs: create-toml
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Gitleaks with generated config
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+        with:
+          args: --config-path=${{ needs.create-toml.outputs.config-path }} --exit-code 1 --verbose
+  
