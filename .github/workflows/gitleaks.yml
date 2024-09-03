@@ -44,6 +44,9 @@ jobs:
           ]
           EOF
 
+      - name: verify gitleaks.toml 
+        run: cat $GITHUB_WORKSPACE/gitleaks.toml
+
       - name: Run Gitleaks with generated config
         uses: gitleaks/gitleaks-action@v2
         env:
