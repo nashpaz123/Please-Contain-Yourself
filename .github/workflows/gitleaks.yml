@@ -57,7 +57,7 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Verify gitleaks.toml file1
+      - name: Verify gitleaks.toml file2
         run: cat $GITHUB_WORKSPACE/gitleaks.toml
 
       - name: Run Gitleaks with generated config
