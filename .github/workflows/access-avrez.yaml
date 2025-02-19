@@ -16,7 +16,7 @@ jobs:
       - uses: qoomon/actions--access-token@v3
         id: access-token
         with:
-          repository: avrez-manifest
+          repository: nashpaz123/avrez-manifest
           permissions: |
             contents: read
             
@@ -25,7 +25,7 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          repository: avrez-manifest
+          repository: nashpaz123/avrez-manifest
           token: ${{ steps.access-token.outputs.token }}
 
       - name: List files in the repository
