@@ -1,0 +1,32 @@
+name: GitHub Actions Access Manager Example
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: qoomon/actions--access-token@v3
+        id: access-token
+        with:
+          repository: avrez-manifest
+          permissions: |
+            contents: read
+            
+      - name: Print Hello, World!
+        run: echo "Hello, my avrez-manifest token is -  ${{ steps.access-token.outputs.token }}"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: avrez-manifest
+          token: ${{ steps.access-token.outputs.token }}
+
+      - name: List files in the repository
+        run: ls -la
