@@ -61,7 +61,7 @@ Luckily for you, this problem had already been solved for you before you even kn
 
 - [ ] Also notice that there is a file in Module 6 that you may not be familiar with, the one named 'docker-compose.yml'. We'll dive into this shortly.
 
-- [ ] Let's do this thing! Run `docker-compose up` ! 
+- [ ] Let's do this thing! Run `docker compose -p someprojectname up` ! 
 
 - [ ] After all the logging has stopped go ahead and use your browser to navigate to `localhost:8080` and `localhost:3000` in separate tabs. Mess around with the app, create some entries, and see that everything works exactly as before!
 
@@ -139,7 +139,7 @@ Most of this should be old news to you, it's just formatted differently in the '
 
 #### I Made This for You!
 
-Let's talk briefly about all the things that Compose made for you in the process of running `docker-compose up`
+Let's talk briefly about all the things that Compose made for you in the process of running `docker compose -p someprojectname up`
 
 - [ ] Run `docker images` and check out the images now on your machine. You should see a couple with really long names, but look at the end of the name and you'll see that Compose made an image for each service you defined in the '.yml' file. (The image names are so lengthy since it concatenates the directory name containing the '.yml' file onto the image name) If you already had the 'mongo:latest' image you will see that it didn't create a new image for the database service but opted to reuse the mongo image.
 
@@ -160,12 +160,12 @@ This is incredibly useful for large complicated apps since you don't have to kee
 - [ ] Next we're going to bring up the app again, but this time in a detached state. Run:
 
 ```sh
-docker-compose up -d
+docker compose -p someprojectname up -d
 ```
 
-Notice how much faster the app came up! This had nothing to do with the fact that we added the `-d` option (this just runs our app in the background), but rather, it came up so fast because it reused everything that it had created the first time `docker-compose up` was run.
+Notice how much faster the app came up! This had nothing to do with the fact that we added the `-d` option (this just runs our app in the background), but rather, it came up so fast because it reused everything that it had created the first time `docker compose -p ... up` was run.
 
-- [ ] Let's try out another command! Run `docker-compose down`
+- [ ] Let's try out another command! Run `docker compose down`
 
 - [ ] Read the message that it logged, you should see something like: 
 
@@ -182,29 +182,29 @@ Removing network 6dockercomposeformulticontainerapps_default
 
 ```
 
-- [ ] `docker-compose down` does three things, first it stops all the app's containers
+- [ ] `docker compose down` does three things, first it stops all the app's containers
 
 - [ ] Next it removes all the app's containers; confirm that they are gone by running `docker ps -a`-
 
 - [ ] Finally it removes the network that your app's containers were attached to; run `docker network ls` to confirm this.
 
-- [ ] There are some things that `docker-compose down` does not remove however. Run `docker images` and you will see that all the images are still on your machine.
+- [ ] There are some things that `docker compose down` does not remove however. Run `docker images` and you will see that all the images are still on your machine.
 
 ---
 >Since these images are cached, the next time you bring the app it will come up much faster since it doesn't have to rebuild the images, just make containers from them.
 >
 >**But what if you made a change in the source code and you need one or more images rebuilt? 
 >
->Just use the `--build` option with the `docker-compose up` command to force a rebuild of the images in your app!**
+>Just use the `--build` option with the `docker compose up` command to force a rebuild of the images in your app!**
 
 ---
 
-- [ ] Run `docker-compose up -d` again
+- [ ] Run `docker compose -p someprojectname up -d` again
 
 - [ ] This time, however, bring it down with the following command:
 
 ```sh
-docker-compose down --rmi all
+docker compose down --rmi all
 ```
 
 The `--rmi all` option removes not only the containers and network that it created for your app, but also the images. This is a good thing to do since images take up a lot of space, if you're done with them you want to make sure to get rid of them.
@@ -219,7 +219,7 @@ The `--rmi all` option removes not only the containers and network that it creat
 
 - [ ] Run the command `docker volume ls` to see all the volumes on your machine. Despite the fact that they there are no containers on your machine anymore, the volumes are left behind. There are some strategies you can use to clean these up:
 
-- Use the -v option when using the `docker-compose down` command. This will delete any volumes associated with the containers you are deleting.
+- Use the -v option when using the `docker compose down` command. This will delete any volumes associated with the containers you are deleting.
 
 - Use `docker volume prune` - This will remove any dangling volumes that are not currently associated with a container. This command will ask you to confirm that you want to do this and then tell you how much memory it reclaimed. It's usually quite a lot!
 
@@ -238,12 +238,12 @@ That's it! I hope you enjoyed learning about Docker Compose! After typing out ev
 #### Things we've learned:
 
 - How to interpret a 'docker-compose.yml' file
-- `docker-compose up`
+- `docker compose up`
 - the  ` -d` option to compose app in a detached state
 - the `--build` option that causes compose to rebuild the images
-- `docker-compose down`
-- the `--rmi all` option to remove all images that were created with the `docker-compose up` command
-- the `-v` option in conjunction with `docker-compose down` to remove volumes created with the `up` command
+- `docker compose down`
+- the `--rmi all` option to remove all images that were created with the `docker compose up` command
+- the `-v` option in conjunction with `docker compose down` to remove volumes created with the `up` command
 - `docker volume ls`
 - `docker volume prune`
 
