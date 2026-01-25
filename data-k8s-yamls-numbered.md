@@ -242,3 +242,51 @@ spec:
             storage: 1Gi
 ```
 `kubectl apply -f stateful.yaml`
+
+## 10) animals
+`vim animals.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: animals-svc
+  labels:
+    app: animals-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    name: http
+  selector:
+    app: animals-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: animals-app
+  labels:
+    app: animals-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: animals-app
+  template:
+    metadata:
+      labels:
+        app: animals-app
+    spec:
+      containers:
+      - name: animals-app
+        image: supergiantkir/animals:bear
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+```
+`kubectl apply -f animals.yaml`
+
+### Go to the external service (load balancer) and visit the zoo, then change the version:
+
+`kubectl set image deployments/animals-app animals-app=supergiantkir/animals:moose --record`
