@@ -88,25 +88,7 @@ spec:
 
 ---
 
-## 5) PersistentVolumeClaim (PVC) — page 62
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-pvc
-spec:
-  storageClassName: my-sc
-  volumeName: my-pv
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-```
-
----
-
-## 6) StorageClass — page 63
+## 5) StorageClass — page 63
 ```yaml
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
@@ -119,7 +101,7 @@ parameters:
 
 ---
 
-## 7) PersistentVolume (PV) — page 64
+## 6) PersistentVolume (PV) — page 64
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -133,6 +115,24 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /mnt/data/postgres
+```
+
+---
+
+## 7) PersistentVolumeClaim (PVC) — page 62
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  storageClassName: my-sc
+  volumeName: my-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
 ```
 
 ---
