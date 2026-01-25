@@ -1,4 +1,8 @@
+https://drive.google.com/file/d/1TnEAr9yTFhvlw5HVb0aS6X-Zv8FuwoPj/view?usp=sharing
+
 ## 1) Pod (gitea) — page 35
+`vim gitea.yaml`
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -9,10 +13,13 @@ spec:
     - name: gitea-container
       image: gitea/gitea:1.4
 ```
+`kubectl apply -f gitea.yaml`
 
 ---
 
 ## 2) ReplicaSet (nginx) — page 41
+`vim rs.yaml`
+
 ```yaml
 kind: ReplicaSet
 apiVersion: apps/v1
@@ -32,10 +39,13 @@ spec:
         - name: nginx
           image: nginx
 ```
+`kubectl apply -f rs.yaml`
 
 ---
 
 ## 3) Deployment (nginx) — page 47
+`vim deploy.yaml`
+
 ```yaml
 kind: Deployment
 apiVersion: apps/v1
@@ -57,10 +67,13 @@ spec:
         - name: nginx
           image: nginx
 ```
+`kubectl apply -f deploy.yaml`
 
 ---
 
 ## 4) Deployment (pg) — stateless — page 56
+`vim less.yaml`
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -85,10 +98,13 @@ spec:
             - name: POSTGRES_PASSWORD
               value: postgres
 ```
+`kubectl apply -f less.yaml`
 
 ---
 
 ## 5) StorageClass — page 63
+`vim sc.yaml`
+
 ```yaml
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
@@ -98,10 +114,13 @@ provisioner: kubernetes.io/no-provisioner
 parameters:
   type: local
 ```
+`kubectl apply -f sc.yaml`
 
 ---
 
 ## 6) PersistentVolume (PV) — page 64
+`vim pv.yaml`
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -116,10 +135,13 @@ spec:
   hostPath:
     path: /mnt/data/postgres
 ```
+`kubectl apply -f pv.yaml`
 
 ---
 
 ## 7) PersistentVolumeClaim (PVC) — page 62
+`vim claim.yaml`
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -134,10 +156,13 @@ spec:
     requests:
       storage: 1Gi
 ```
+`kubectl apply -f claim.yaml`
 
 ---
 
 ## 8) Deployment (pg) — with PVC mounted — page 66
+`vim pgdeploy.yaml`
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -171,10 +196,15 @@ spec:
           persistentVolumeClaim:
             claimName: my-pvc
 ```
+`kubectl apply -f pgdeploy.yaml`
 
 ---
 
 ## 9) StatefulSet (pg) — with volumeClaimTemplates — page 72
+`kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml`
+
+`vim stateful.yaml`
+
 ```yaml
 apiVersion: apps/v1
 kind: StatefulSet
@@ -211,3 +241,4 @@ spec:
           requests:
             storage: 1Gi
 ```
+`kubectl apply -f stateful.yaml`
