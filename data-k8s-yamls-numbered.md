@@ -15,6 +15,8 @@ spec:
 ```
 `kubectl apply -f gitea.yaml`
 
+`kubectl get pod,rs,deploy`
+
 ---
 
 ## 2) ReplicaSet (nginx) — page 41
@@ -115,6 +117,8 @@ parameters:
   type: local
 ```
 `kubectl apply -f sc.yaml`
+
+`kubectl get sc,pv,pvc`
 
 ---
 
@@ -243,6 +247,10 @@ spec:
 ```
 `kubectl apply -f stateful.yaml`
 
+`kubectl get sts,pods`
+
+---
+
 ## 10) animals
 `vim animals.yaml`
 
@@ -286,6 +294,9 @@ spec:
         - containerPort: 80
 ```
 `kubectl apply -f animals.yaml`
+
+`kubectl get svc,pod,deploy`
+
 
 ### Go to the external service (load balancer) and visit the zoo, then change the version:
 
