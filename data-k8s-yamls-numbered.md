@@ -20,29 +20,38 @@ spec:
 ---
 
 ## 1b) expose pod via service
-`vim server.yaml`
+`vim clientserver.yaml`
 
 ```yaml
-kind: Pod                       # Changed from Deployment
-apiVersion: v1                  # Changed to v1 (Pods use v1, not apps/v1)
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx-server            # Changed to match the command argument
+  name: nginx-server
   labels:
-    app: nginx
+    app: nginx-server
 spec:
-  # replicas: 2                 # Removed (Pods do not support replicas)
   containers:
-    - name: nginx
+    - name: nginx-server
       image: nginx
       ports:
-        - containerPort: 80     # Added for clarity (matches --target-port)
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+spec:
+  containers:
+    - name: client
+      image: nginx
 ```
-`kubectl apply -f pod.yaml`
+`kubectl apply -f clientserver.yaml`
 
 `kubectl expose pod nginx-server --port=80 --target-port=80`
 
 `kubectl get pod,svc`
 
+`kubectl exec client<name of any pod in the cluster> -- curl nginx-server`
 
 ---
 
