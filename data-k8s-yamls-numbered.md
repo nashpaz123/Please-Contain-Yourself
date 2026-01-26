@@ -19,7 +19,7 @@ spec:
 
 ---
 
-## 1b) expose pod via service
+## 1b) expose pod via service - page 27
 `vim clientserver.yaml`
 
 ```yaml
