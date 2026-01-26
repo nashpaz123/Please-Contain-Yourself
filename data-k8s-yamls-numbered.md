@@ -336,4 +336,4 @@ spec:
 
 ### Go to the external service (load balancer) and visit the zoo, then change the version:
 
-`kubectl set image deployments/animals-app animals-app=supergiantkir/animals:moose --record`
+`kubectl set image deployments/animals-app animals-app=supergiantkir/animals:moose`
