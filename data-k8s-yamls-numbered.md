@@ -19,6 +19,33 @@ spec:
 
 ---
 
+## 1b) expose pod via service
+`vim server.yaml`
+
+```yaml
+kind: Pod                       # Changed from Deployment
+apiVersion: v1                  # Changed to v1 (Pods use v1, not apps/v1)
+metadata:
+  name: nginx-server            # Changed to match the command argument
+  labels:
+    app: nginx
+spec:
+  # replicas: 2                 # Removed (Pods do not support replicas)
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80     # Added for clarity (matches --target-port)
+```
+`kubectl apply -f pod.yaml`
+
+`kubectl expose pod nginx-server --port=80 --target-port=80`
+
+`kubectl get pod,svc`
+
+
+---
+
 ## 2) ReplicaSet (nginx) — page 41
 `vim rs.yaml`
 
